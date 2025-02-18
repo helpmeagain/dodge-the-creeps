@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhph8y6rc2t2v"
-path="res://.godot/imported/enemySwimming_1.png-dd0e11759dc3d624c8a704f6e98a3d80.ctex"
+uid="uid://nm2wxrf0kgh1"
+path="res://.godot/imported/ToxicFrogGreenBrown_Hop.png-b8314089c531558bffd49dd0d480ed01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemySwimming_1.png"
-dest_files=["res://.godot/imported/enemySwimming_1.png-dd0e11759dc3d624c8a704f6e98a3d80.ctex"]
+source_file="res://art/Characters/ToxicFrogGreenBrown_Hop.png"
+dest_files=["res://.godot/imported/ToxicFrogGreenBrown_Hop.png-b8314089c531558bffd49dd0d480ed01.ctex"]
 
 [params]
 

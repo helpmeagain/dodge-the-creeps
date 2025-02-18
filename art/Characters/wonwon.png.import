@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cntgbyfsobuuk"
-path="res://.godot/imported/playerGrey_up1.png-6bd114d0a6beac91f48e3a7314d44564.ctex"
+uid="uid://detcq057qfsiy"
+path="res://.godot/imported/wonwon.png-e28afd98872c7d43a2744455bffeda2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/playerGrey_up1.png"
-dest_files=["res://.godot/imported/playerGrey_up1.png-6bd114d0a6beac91f48e3a7314d44564.ctex"]
+source_file="res://art/Characters/wonwon.png"
+dest_files=["res://.godot/imported/wonwon.png-e28afd98872c7d43a2744455bffeda2c.ctex"]
 
 [params]
 

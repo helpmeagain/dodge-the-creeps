@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxwq7v1ga64yy"
-path="res://.godot/imported/playerGrey_walk2.png-34d2d916366100182d08037c51884043.ctex"
+uid="uid://cdc8isji4du24"
+path="res://.godot/imported/WhiteCatDie.png-d0c63e6cd5bfb11af48f1b164e9e219c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/playerGrey_walk2.png"
-dest_files=["res://.godot/imported/playerGrey_walk2.png-34d2d916366100182d08037c51884043.ctex"]
+source_file="res://art/Characters/WhiteCatDie.png"
+dest_files=["res://.godot/imported/WhiteCatDie.png-d0c63e6cd5bfb11af48f1b164e9e219c.ctex"]
 
 [params]
 

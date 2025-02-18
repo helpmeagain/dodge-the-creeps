@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://detcq057qfsiy"
-path="res://.godot/imported/wonwon.png-b765e6e146658c14791c375ea87aaa8e.ctex"
+uid="uid://4apsa2ms5k7w"
+path="res://.godot/imported/WhiteCatIdle.png-8a285ff28ad22e86c5bcc6ddcf4a4b18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/wonwon.png"
-dest_files=["res://.godot/imported/wonwon.png-b765e6e146658c14791c375ea87aaa8e.ctex"]
+source_file="res://art/Characters/WhiteCatIdle.png"
+dest_files=["res://.godot/imported/WhiteCatIdle.png-8a285ff28ad22e86c5bcc6ddcf4a4b18.ctex"]
 
 [params]
 

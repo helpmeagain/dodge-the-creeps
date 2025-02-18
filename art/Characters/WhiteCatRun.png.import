@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dht45ak44t7o6"
-path="res://.godot/imported/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.ctex"
+uid="uid://bnyjto7iuf5wm"
+path="res://.godot/imported/WhiteCatRun.png-e8e7bd26cdb658403e46bd81c8d97ec4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemyFlyingAlt_1.png"
-dest_files=["res://.godot/imported/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.ctex"]
+source_file="res://art/Characters/WhiteCatRun.png"
+dest_files=["res://.godot/imported/WhiteCatRun.png-e8e7bd26cdb658403e46bd81c8d97ec4.ctex"]
 
 [params]
 
