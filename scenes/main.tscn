@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8jbgus36o8bs"]
+[gd_scene load_steps=10 format=3 uid="uid://c8jbgus36o8bs"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k40ft"]
 [ext_resource type="PackedScene" uid="uid://bujysl0i1ktjq" path="res://scenes/player.tscn" id="1_tw2b7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bndsxvs6x8pqt" path="res://scenes/fastPowerUp.tscn" id="3_emgr0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="4_7y36f"]
 [ext_resource type="AudioStream" uid="uid://c3adi2g36negh" path="res://art/sound/House In a Forest Loop.ogg" id="6_bf6tt"]
+[ext_resource type="PackedScene" uid="uid://cjtnk6koaen4" path="res://scenes/background.tscn" id="6_t85ov"]
 
 [sub_resource type="Curve2D" id="Curve2D_svcak"]
 _data = {
@@ -21,6 +22,10 @@ dragon_scene = ExtResource("3_bmfef")
 power_up_scene = ExtResource("3_emgr0")
 
 [node name="Player" parent="." instance=ExtResource("1_tw2b7")]
+z_index = 10
+
+[node name="Background" parent="." instance=ExtResource("6_t85ov")]
+modulate = Color(0.752582, 0.752582, 0.752582, 1)
 
 [node name="SoundtrackAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_bf6tt")

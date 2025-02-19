@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhscoa4cy2fcr"]
+[gd_scene load_steps=12 format=3 uid="uid://dhscoa4cy2fcr"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_42cjl"]
 [ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/characters/WhiteCatIdle.png" id="2_nwoq0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="3_07svb"]
+[ext_resource type="PackedScene" uid="uid://cjtnk6koaen4" path="res://scenes/background.tscn" id="3_oor7r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31ovd"]
 atlas = ExtResource("2_nwoq0")
@@ -64,9 +65,13 @@ grow_vertical = 2
 script = ExtResource("1_42cjl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 position = Vector2(248.25, 265.75)
 scale = Vector2(7.10938, 7.29688)
 sprite_frames = SubResource("SpriteFrames_t487s")
+
+[node name="Background" parent="." instance=ExtResource("3_oor7r")]
+modulate = Color(0.445488, 0.445488, 0.445488, 1)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
