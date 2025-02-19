@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqmpx722wwfpv"]
+
+[ext_resource type="Texture2D" uid="uid://blwbbi5woeudc" path="res://art/Characters/spr_monster_reg_strip4.png" id="1_m65uo"]
+[ext_resource type="Script" path="res://scripts/dragon.gd" id="1_w3c7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjww2"]
+atlas = ExtResource("1_m65uo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yhl3"]
+atlas = ExtResource("1_m65uo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teo5g"]
+atlas = ExtResource("1_m65uo")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r263"]
+atlas = ExtResource("1_m65uo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wokbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjww2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yhl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teo5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r263")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ycgvi"]
+radius = 20.4545
+height = 46.6742
+
+[node name="Dragon" type="StaticBody2D"]
+position = Vector2(0, -1)
+scale = Vector2(4.04, 4.04)
+script = ExtResource("1_w3c7m")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wokbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5708
+scale = Vector2(0.88, 1.05583)
+shape = SubResource("CapsuleShape2D_ycgvi")

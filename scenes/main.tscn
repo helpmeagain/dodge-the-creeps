@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8jbgus36o8bs"]
+[gd_scene load_steps=8 format=3 uid="uid://c8jbgus36o8bs"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k40ft"]
 [ext_resource type="PackedScene" uid="uid://bujysl0i1ktjq" path="res://scenes/player.tscn" id="1_tw2b7"]
 [ext_resource type="PackedScene" uid="uid://bvpqvftbetyqj" path="res://scenes/enemy.tscn" id="2_t52xh"]
+[ext_resource type="PackedScene" uid="uid://cqmpx722wwfpv" path="res://scenes/dragon.tscn" id="3_bmfef"]
 [ext_resource type="PackedScene" uid="uid://bndsxvs6x8pqt" path="res://scenes/fastPowerUp.tscn" id="3_emgr0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="4_7y36f"]
 
@@ -15,6 +16,7 @@ point_count = 5
 [node name="Main" type="Node"]
 script = ExtResource("1_k40ft")
 mob_scene = ExtResource("2_t52xh")
+dragon_scene = ExtResource("3_bmfef")
 power_up_scene = ExtResource("3_emgr0")
 
 [node name="Player" parent="." instance=ExtResource("1_tw2b7")]
@@ -71,14 +73,17 @@ offset_bottom = 513.0
 theme_override_fonts/font = ExtResource("4_7y36f")
 text = "Exit"
 
+[node name="DragonTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
-
-[node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -92,6 +97,7 @@ position = Vector2(1, 0)
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="DragonTimer" to="." method="_on_dragon_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
