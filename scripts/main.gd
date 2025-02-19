@@ -18,7 +18,8 @@ func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$CanvasLayer/GameOver.show()
-	$CanvasLayer/Button.show()
+	$CanvasLayer/ResetButton.show()
+	$CanvasLayer/ExitButton.show()
 
 func new_game():
 	score = 0
@@ -52,7 +53,11 @@ func _on_mob_timer_timeout() -> void:
 	
 	add_child(mob)
 
-func _on_button_pressed() -> void:
+func _on_reset_button_pressed() -> void:
 	$CanvasLayer/GameOver.hide()
-	$CanvasLayer/Button.hide()
+	$CanvasLayer/ResetButton.hide()
+	$CanvasLayer/ExitButton.hide()
 	new_game()
+
+func _on_exit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn") 

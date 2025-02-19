@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhscoa4cy2fcr"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_42cjl"]
+[ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/Characters/WhiteCatIdle.png" id="2_nwoq0"]
+[ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="3_07svb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31ovd"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gsyl"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f2cy"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6lju"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8wem"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrj3n"]
+atlas = ExtResource("2_nwoq0")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t487s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31ovd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gsyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f2cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6lju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8wem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrj3n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_42cjl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(248.25, 265.75)
+scale = Vector2(7.10938, 7.29688)
+sprite_frames = SubResource("SpriteFrames_t487s")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 313.0
+offset_right = 511.0
+offset_bottom = 387.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_07svb")
+theme_override_font_sizes/font_size = 55
+text = "Dodge the creeps"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 385.0
+offset_right = -38.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_07svb")
+theme_override_font_sizes/font_size = 35
+text = "Start"
+
+[node name="About" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_07svb")
+theme_override_font_sizes/font_size = 35
+text = "About"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_07svb")
+theme_override_font_sizes/font_size = 35
+text = "Exit"

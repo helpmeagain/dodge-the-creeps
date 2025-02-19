@@ -41,7 +41,7 @@ theme_override_fonts/font = ExtResource("4_7y36f")
 theme_override_font_sizes/font_size = 60
 text = "GAME OVER!"
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="ResetButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 194.0
 offset_top = 443.0
@@ -49,6 +49,15 @@ offset_right = 283.0
 offset_bottom = 471.0
 theme_override_fonts/font = ExtResource("4_7y36f")
 text = "Try Again!"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 220.0
+offset_top = 482.0
+offset_right = 262.0
+offset_bottom = 513.0
+theme_override_fonts/font = ExtResource("4_7y36f")
+text = "Exit"
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -69,7 +78,8 @@ curve = SubResource("Curve2D_svcak")
 position = Vector2(1, 0)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
