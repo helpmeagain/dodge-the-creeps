@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func game_over() -> void:
 	$CanvasLayer/GameOver.show()
 	$SoundtrackAudio.stop()
+	$RainAudio.stop()
 	for timer in $Timers.get_children():
 		timer.stop()
 	for objects in get_tree().get_nodes_in_group("game_object"):
@@ -82,6 +83,17 @@ func _on_fast_power_up_timer_timeout() -> void:
 	var spawn_position = Vector2(randf_range(100, get_viewport().size.x - 100), randf_range(100, get_viewport().size.y - 100))
 	power_up.position = spawn_position
 	add_child(power_up)
+
+func _on_rain_timer_timeout() -> void:
+	$RainEffect.show()
+	$RainAudio.play()
+	$Background.modulate = Color(0.4, 0.5, 0.8, 1.0)
+	$HideRainTimer.start()
+
+func _on_hide_rain_timer_timeout() -> void:
+	$Background.modulate = Color(0.69, 0.69, 0.69, 1.0)
+	$RainAudio.stop()
+	$RainEffect.hide()
 
 func _on_reset_button_pressed() -> void:
 	$CanvasLayer/GameOver.hide()

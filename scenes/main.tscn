@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8jbgus36o8bs"]
+[gd_scene load_steps=13 format=3 uid="uid://c8jbgus36o8bs"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k40ft"]
 [ext_resource type="PackedScene" uid="uid://bujysl0i1ktjq" path="res://scenes/player.tscn" id="1_tw2b7"]
@@ -6,8 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://cqmpx722wwfpv" path="res://scenes/dragon.tscn" id="3_bmfef"]
 [ext_resource type="PackedScene" uid="uid://bndsxvs6x8pqt" path="res://scenes/fastPowerUp.tscn" id="3_emgr0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="4_7y36f"]
+[ext_resource type="Shader" path="res://art/background/rain_and_snow_shader.gdshader" id="5_7wm1p"]
 [ext_resource type="AudioStream" uid="uid://c3adi2g36negh" path="res://art/sound/House In a Forest Loop.ogg" id="6_bf6tt"]
 [ext_resource type="PackedScene" uid="uid://cjtnk6koaen4" path="res://scenes/background.tscn" id="6_t85ov"]
+[ext_resource type="AudioStream" uid="uid://cex8yg4ra87cd" path="res://art/sound/light-rain-109591.mp3" id="9_lkop3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2s25y"]
+shader = ExtResource("5_7wm1p")
+shader_parameter/rain_amount = 150.0
+shader_parameter/near_rain_length = 0.2
+shader_parameter/far_rain_length = 0.1
+shader_parameter/near_rain_width = 1.0
+shader_parameter/far_rain_width = 0.5
+shader_parameter/near_rain_transparency = 1.0
+shader_parameter/far_rain_transparency = 0.5
+shader_parameter/rain_color = Color(0.270588, 0.478431, 0.768627, 0.513726)
+shader_parameter/base_rain_speed = 1.0
+shader_parameter/additional_rain_speed = 0.5
+shader_parameter/slant = 0.2
 
 [sub_resource type="Curve2D" id="Curve2D_svcak"]
 _data = {
@@ -25,11 +41,22 @@ power_up_scene = ExtResource("3_emgr0")
 z_index = 10
 
 [node name="Background" parent="." instance=ExtResource("6_t85ov")]
-modulate = Color(0.752582, 0.752582, 0.752582, 1)
+
+[node name="RainEffect" type="ColorRect" parent="."]
+visible = false
+z_index = 100
+material = SubResource("ShaderMaterial_2s25y")
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(12, 18.04)
+color = Color(1, 1, 1, 0)
 
 [node name="SoundtrackAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_bf6tt")
 parameters/looping = true
+
+[node name="RainAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_lkop3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -95,9 +122,15 @@ wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="Timers"]
 
+[node name="RainTimer" type="Timer" parent="Timers"]
+wait_time = 30.0
+
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="HideRainTimer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -116,4 +149,6 @@ position = Vector2(1, 0)
 [connection signal="timeout" from="Timers/DragonTimer" to="." method="_on_dragon_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="Timers/ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="Timers/RainTimer" to="." method="_on_rain_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="HideRainTimer" to="." method="_on_hide_rain_timer_timeout"]

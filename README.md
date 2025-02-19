@@ -8,3 +8,5 @@ Powerup: https://leo-red.itch.io/lucid-icon-pack
 Dragon: https://lizcheong.itch.io/waddling-dragon-sprite
 HitSound: https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack
 Backgroud: https://cainos.itch.io/pixel-art-top-down-basic
+Rain: https://steampunkdemon.itch.io/rain-and-snow-shader-with-parallax-effect-for-godot
+Rain SFX: https://pixabay.com/sound-effects/light-rain-109591/
