@@ -7,12 +7,22 @@ signal hit
 var current_lives: int
 var screen_size
 var is_dead = false
+var speed_timer: Timer
+var default_speed: int
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	default_speed = speed
+	add_to_group("player")
+	
+	speed_timer = Timer.new()
+	speed_timer.wait_time = 3
+	speed_timer.one_shot = true
+	speed_timer.connect("timeout", Callable(self, "_reset_speed"))
+	add_child(speed_timer)
 
 func _process(delta: float) -> void:
-	if is_dead:  # Verifica se o personagem morreu, e não processa mais movimento
+	if is_dead:
 		return
 	
 	var velocity = Vector2.ZERO
@@ -61,3 +71,10 @@ func die():
 	is_dead = true
 	$AnimatedSprite2D.play("death")
 	hide()
+
+func increase_speed():
+	speed += 400
+	speed_timer.start()
+
+func _reset_speed():
+	speed = default_speed

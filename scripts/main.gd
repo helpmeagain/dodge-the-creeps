@@ -1,15 +1,20 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var power_up_scene: PackedScene
+var power_up_timer: Timer
 var score
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_game()
+	power_up_timer = Timer.new()
+	add_child(power_up_timer)
+	
+	power_up_timer.wait_time = 20
+	power_up_timer.one_shot = false
+	power_up_timer.connect("timeout", Callable(self, "_spawn_power_up"))
+	power_up_timer.start()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -61,6 +66,13 @@ func _on_reset_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn") 
-	
+
 func update_lives_ui():
 	$CanvasLayer/Lifes.text = "Lifes: " + str($Player.current_lives)
+
+func _spawn_power_up():
+	var power_up = power_up_scene.instantiate()
+	var spawn_position = Vector2(randf_range(100, get_viewport().size.x - 100), randf_range(100, get_viewport().size.y - 100))
+	power_up.position = spawn_position
+	print("Power-up spawned at position: ", spawn_position)
+	add_child(power_up)
