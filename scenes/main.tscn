@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jbgus36o8bs"]
+[gd_scene load_steps=6 format=3 uid="uid://c8jbgus36o8bs"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k40ft"]
 [ext_resource type="PackedScene" uid="uid://bujysl0i1ktjq" path="res://scenes/player.tscn" id="1_tw2b7"]
 [ext_resource type="PackedScene" uid="uid://bvpqvftbetyqj" path="res://scenes/enemy.tscn" id="2_t52xh"]
+[ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="4_7y36f"]
 
 [sub_resource type="Curve2D" id="Curve2D_svcak"]
 _data = {
@@ -15,6 +16,39 @@ script = ExtResource("1_k40ft")
 mob_scene = ExtResource("2_t52xh")
 
 [node name="Player" parent="." instance=ExtResource("1_tw2b7")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 69.0
+offset_bottom = 68.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_7y36f")
+theme_override_font_sizes/font_size = 30
+
+[node name="GameOver" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 81.0
+offset_top = 362.0
+offset_right = 410.0
+offset_bottom = 436.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_7y36f")
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER!"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 194.0
+offset_top = 443.0
+offset_right = 283.0
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("4_7y36f")
+text = "Try Again!"
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -35,6 +69,7 @@ curve = SubResource("Curve2D_svcak")
 position = Vector2(1, 0)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

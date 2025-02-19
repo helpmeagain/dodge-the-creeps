@@ -17,14 +17,18 @@ func _process(delta: float) -> void:
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$CanvasLayer/GameOver.show()
+	$CanvasLayer/Button.show()
 
 func new_game():
 	score = 0
+	$CanvasLayer/Score.text = "Score: 0"
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 
 func _on_score_timer_timeout() -> void:
 	score += 1
+	$CanvasLayer/Score.text = "Score: " + str(score)
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
@@ -47,3 +51,8 @@ func _on_mob_timer_timeout() -> void:
 	mob.linear_velocity = velocity.rotated(direction)
 	
 	add_child(mob)
+
+func _on_button_pressed() -> void:
+	$CanvasLayer/GameOver.hide()
+	$CanvasLayer/Button.hide()
+	new_game()
