@@ -29,6 +29,16 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("4_7y36f")
 theme_override_font_sizes/font_size = 30
 
+[node name="Lifes" type="Label" parent="CanvasLayer"]
+offset_left = 354.0
+offset_top = 5.0
+offset_right = 394.0
+offset_bottom = 42.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_7y36f")
+theme_override_font_sizes/font_size = 30
+
 [node name="GameOver" type="Label" parent="CanvasLayer"]
 visible = false
 offset_left = 81.0

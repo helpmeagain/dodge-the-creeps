@@ -61,3 +61,6 @@ func _on_reset_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn") 
+	
+func update_lives_ui():
+	$CanvasLayer/Lifes.text = "Lifes: " + str($Player.current_lives)
