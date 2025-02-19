@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bujysl0i1ktjq"]
+[gd_scene load_steps=28 format=3 uid="uid://bujysl0i1ktjq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tlp6d"]
-[ext_resource type="Texture2D" uid="uid://cdc8isji4du24" path="res://art/Characters/WhiteCatDie.png" id="2_dv4tp"]
-[ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/Characters/WhiteCatIdle.png" id="3_27adf"]
-[ext_resource type="Texture2D" uid="uid://bnyjto7iuf5wm" path="res://art/Characters/WhiteCatRun.png" id="4_7c4o3"]
+[ext_resource type="Texture2D" uid="uid://cdc8isji4du24" path="res://art/characters/WhiteCatDie.png" id="2_dv4tp"]
+[ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/characters/WhiteCatIdle.png" id="3_27adf"]
+[ext_resource type="Texture2D" uid="uid://bnyjto7iuf5wm" path="res://art/characters/WhiteCatRun.png" id="4_7c4o3"]
+[ext_resource type="AudioStream" uid="uid://dr2u544k1xuay" path="res://art/sound/gameover.wav" id="5_k1fwv"]
+[ext_resource type="AudioStream" uid="uid://b1oo301qvks37" path="res://art/sound/Hit damage 1.wav" id="6_cvs0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kec8y"]
 atlas = ExtResource("2_dv4tp")
@@ -105,7 +107,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k2pt1")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -174,4 +176,23 @@ animation = &"death"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4vm11")
 
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k1fwv")
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_cvs0x")
+volume_db = 10.0
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="SpeedTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timers/SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

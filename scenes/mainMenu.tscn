@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhscoa4cy2fcr"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_42cjl"]
-[ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/Characters/WhiteCatIdle.png" id="2_nwoq0"]
+[ext_resource type="Texture2D" uid="uid://4apsa2ms5k7w" path="res://art/characters/WhiteCatIdle.png" id="2_nwoq0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="3_07svb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31ovd"]
@@ -85,10 +85,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = 385.0
-offset_right = -38.0
-offset_bottom = -93.0
+offset_left = 50.0
+offset_top = 389.0
+offset_right = -44.0
+offset_bottom = -89.0
 grow_horizontal = 2
 grow_vertical = 2
 

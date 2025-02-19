@@ -3,39 +3,27 @@ extends Node
 @export var mob_scene: PackedScene
 @export var dragon_scene: PackedScene
 @export var power_up_scene: PackedScene
-var power_up_timer: Timer
 var score
 
 func _ready() -> void:
 	new_game()
-	power_up_timer = Timer.new()
-	add_child(power_up_timer)
-	
-	power_up_timer.wait_time = 20
-	power_up_timer.one_shot = false
-	power_up_timer.connect("timeout", Callable(self, "_spawn_power_up"))
-	power_up_timer.start()
 
 func _process(delta: float) -> void:
 	pass
 
-
 func game_over() -> void:
-	$ScoreTimer.stop()
-	$MobTimer.stop()
-	$DragonTimer.stop()
 	$CanvasLayer/GameOver.show()
-	$CanvasLayer/ResetButton.show()
-	$CanvasLayer/ExitButton.show()
-	for mob in get_tree().get_nodes_in_group("mobs"):
-		mob.queue_free()
-
-	for dragon in get_tree().get_nodes_in_group("dragons"):
-		dragon.queue_free()
+	$SoundtrackAudio.stop()
+	for timer in $Timers.get_children():
+		timer.stop()
+	for objects in get_tree().get_nodes_in_group("game_object"):
+		objects.queue_free()
 
 func new_game():
 	score = 0
+	$SoundtrackAudio.play()
 	$CanvasLayer/Score.text = "Score: 0"
+	$CanvasLayer/Lifes.text = "Lifes: " + str($Player.max_lives)
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 
@@ -44,9 +32,8 @@ func _on_score_timer_timeout() -> void:
 	$CanvasLayer/Score.text = "Score: " + str(score)
 
 func _on_start_timer_timeout() -> void:
-	$DragonTimer.start()
-	$MobTimer.start()
-	$ScoreTimer.start()
+	for timer in $Timers.get_children():
+		timer.start()
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
@@ -90,10 +77,14 @@ func _on_dragon_timer_timeout() -> void:
 	tween.tween_property(dragon, "position", end_pos, 5.0)
 	tween.tween_callback(dragon.queue_free)
 
+func _on_fast_power_up_timer_timeout() -> void:
+	var power_up = power_up_scene.instantiate()
+	var spawn_position = Vector2(randf_range(100, get_viewport().size.x - 100), randf_range(100, get_viewport().size.y - 100))
+	power_up.position = spawn_position
+	add_child(power_up)
+
 func _on_reset_button_pressed() -> void:
 	$CanvasLayer/GameOver.hide()
-	$CanvasLayer/ResetButton.hide()
-	$CanvasLayer/ExitButton.hide()
 	new_game()
 
 func _on_exit_button_pressed() -> void:
@@ -101,9 +92,3 @@ func _on_exit_button_pressed() -> void:
 
 func update_lives_ui():
 	$CanvasLayer/Lifes.text = "Lifes: " + str($Player.current_lives)
-
-func _spawn_power_up():
-	var power_up = power_up_scene.instantiate()
-	var spawn_position = Vector2(randf_range(100, get_viewport().size.x - 100), randf_range(100, get_viewport().size.y - 100))
-	power_up.position = spawn_position
-	add_child(power_up)

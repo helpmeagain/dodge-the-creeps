@@ -3,7 +3,7 @@ extends RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("mobs")
+	add_to_group("game_object")
 	var enemy_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
 	$AnimatedSprite2D.play(enemy_types[randi() % enemy_types.size()])
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=24 format=3 uid="uid://bvpqvftbetyqj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lsgfc"]
-[ext_resource type="Texture2D" uid="uid://detcq057qfsiy" path="res://art/Characters/wonwon.png" id="2_xsbtc"]
-[ext_resource type="Texture2D" uid="uid://nm2wxrf0kgh1" path="res://art/Characters/ToxicFrogGreenBrown_Hop.png" id="3_bqyce"]
-[ext_resource type="Texture2D" uid="uid://d2ct0fdqh1rbo" path="res://art/Characters/hop.png" id="6_pvng1"]
+[ext_resource type="Texture2D" uid="uid://detcq057qfsiy" path="res://art/characters/wonwon.png" id="2_xsbtc"]
+[ext_resource type="Texture2D" uid="uid://nm2wxrf0kgh1" path="res://art/characters/ToxicFrogGreenBrown_Hop.png" id="3_bqyce"]
+[ext_resource type="Texture2D" uid="uid://d2ct0fdqh1rbo" path="res://art/characters/hop.png" id="6_pvng1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thrp0"]
 atlas = ExtResource("2_xsbtc")

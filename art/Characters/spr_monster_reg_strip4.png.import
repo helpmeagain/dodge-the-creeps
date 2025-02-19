@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blwbbi5woeudc"
-path="res://.godot/imported/spr_monster_reg_strip4.png-c311382a653e413631110433485f46cd.ctex"
+path="res://.godot/imported/spr_monster_reg_strip4.png-b35f17e31a60959e8ea8396f0e1aac67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Characters/spr_monster_reg_strip4.png"
-dest_files=["res://.godot/imported/spr_monster_reg_strip4.png-c311382a653e413631110433485f46cd.ctex"]
+source_file="res://art/characters/spr_monster_reg_strip4.png"
+dest_files=["res://.godot/imported/spr_monster_reg_strip4.png-b35f17e31a60959e8ea8396f0e1aac67.ctex"]
 
 [params]
 

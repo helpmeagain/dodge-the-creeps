@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8jbgus36o8bs"]
+[gd_scene load_steps=9 format=3 uid="uid://c8jbgus36o8bs"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_k40ft"]
 [ext_resource type="PackedScene" uid="uid://bujysl0i1ktjq" path="res://scenes/player.tscn" id="1_tw2b7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqmpx722wwfpv" path="res://scenes/dragon.tscn" id="3_bmfef"]
 [ext_resource type="PackedScene" uid="uid://bndsxvs6x8pqt" path="res://scenes/fastPowerUp.tscn" id="3_emgr0"]
 [ext_resource type="FontFile" uid="uid://cuenpklc2fnjr" path="res://art/fonts/LazyFox Pixel Font 1.ttf" id="4_7y36f"]
+[ext_resource type="AudioStream" uid="uid://c3adi2g36negh" path="res://art/sound/House In a Forest Loop.ogg" id="6_bf6tt"]
 
 [sub_resource type="Curve2D" id="Curve2D_svcak"]
 _data = {
@@ -20,6 +21,10 @@ dragon_scene = ExtResource("3_bmfef")
 power_up_scene = ExtResource("3_emgr0")
 
 [node name="Player" parent="." instance=ExtResource("1_tw2b7")]
+
+[node name="SoundtrackAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bf6tt")
+parameters/looping = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -55,35 +60,39 @@ theme_override_fonts/font = ExtResource("4_7y36f")
 theme_override_font_sizes/font_size = 60
 text = "GAME OVER!"
 
-[node name="ResetButton" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 194.0
-offset_top = 443.0
-offset_right = 283.0
-offset_bottom = 471.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 77.0
+offset_right = 202.0
+offset_bottom = 137.0
+
+[node name="ResetButton" type="Button" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_7y36f")
 text = "Try Again!"
 
-[node name="ExitButton" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 220.0
-offset_top = 482.0
-offset_right = 262.0
-offset_bottom = 513.0
+[node name="ExitButton" type="Button" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_7y36f")
 text = "Exit"
 
-[node name="DragonTimer" type="Timer" parent="."]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="FastPowerUpTimer" type="Timer" parent="Timers"]
+wait_time = 20.0
+
+[node name="DragonTimer" type="Timer" parent="Timers"]
 wait_time = 10.0
 
-[node name="MobTimer" type="Timer" parent="."]
+[node name="MobTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="Timers"]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -94,10 +103,12 @@ curve = SubResource("Curve2D_svcak")
 [node name="LocalMobGeneration" type="PathFollow2D" parent="MobPath"]
 position = Vector2(1, 0)
 
-[connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="timeout" from="DragonTimer" to="." method="_on_dragon_timer_timeout"]
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="death" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="." method="update_lives_ui"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="Timers/FastPowerUpTimer" to="." method="_on_fast_power_up_timer_timeout"]
+[connection signal="timeout" from="Timers/DragonTimer" to="." method="_on_dragon_timer_timeout"]
+[connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="Timers/ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

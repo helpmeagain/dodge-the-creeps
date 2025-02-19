@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdc8isji4du24"
-path="res://.godot/imported/WhiteCatDie.png-d0c63e6cd5bfb11af48f1b164e9e219c.ctex"
+path="res://.godot/imported/WhiteCatDie.png-f95314b9efface72bd338bde3b1a1a13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Characters/WhiteCatDie.png"
-dest_files=["res://.godot/imported/WhiteCatDie.png-d0c63e6cd5bfb11af48f1b164e9e219c.ctex"]
+source_file="res://art/characters/WhiteCatDie.png"
+dest_files=["res://.godot/imported/WhiteCatDie.png-f95314b9efface72bd338bde3b1a1a13.ctex"]
 
 [params]
 

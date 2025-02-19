@@ -6,3 +6,4 @@ Enemy sprite: https://eduardscarpato.itch.io/toxic-frog-animations-pixel-art-2d-
 Font: https://lazy-fox.itch.io/lazy-pixel-fonts
 Powerup: https://leo-red.itch.io/lucid-icon-pack
 Dragon: https://lizcheong.itch.io/waddling-dragon-sprite
+HitSound: https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack
