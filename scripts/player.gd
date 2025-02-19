@@ -8,7 +8,9 @@ var current_lives: int
 var screen_size
 var is_dead = false
 var speed_timer: Timer
+var invincibility_timer: Timer 
 var default_speed: int
+var is_invincible = false
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -20,6 +22,12 @@ func _ready() -> void:
 	speed_timer.one_shot = true
 	speed_timer.connect("timeout", Callable(self, "_reset_speed"))
 	add_child(speed_timer)
+
+	invincibility_timer = Timer.new()
+	invincibility_timer.wait_time = 3 
+	invincibility_timer.one_shot = true
+	invincibility_timer.connect("timeout", Callable(self, "_reset_invincibility"))
+	add_child(invincibility_timer)
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -47,7 +55,7 @@ func _process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 func _on_body_entered(body: Node2D) -> void:
-	if is_dead:
+	if is_invincible or is_dead:
 		return
 	
 	current_lives -= 1
@@ -56,8 +64,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if current_lives <= 0:
 		die()
 		hit.emit()
-	else:
-		position = get_parent().get_node("StartPosition").position
+		return
+	activate_invincibility()
 
 func start(pos):
 	position = pos
@@ -78,3 +86,12 @@ func increase_speed():
 
 func _reset_speed():
 	speed = default_speed
+
+func activate_invincibility():
+	is_invincible = true
+	$AnimatedSprite2D.modulate.a = 0.3
+	invincibility_timer.start()
+
+func _reset_invincibility():
+	is_invincible = false
+	$AnimatedSprite2D.modulate.a = 1.0
